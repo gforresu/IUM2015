@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.disegnator.robotocalendar.RobotoCalendarView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/robotoCalendarPicker"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.84">
+    </com.disegnator.robotocalendar.RobotoCalendarView>
+
+    <ImageButton style="@style/AppTheme"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="New Button"
+        android:id="@+id/button"
+        android:src="@drawable/butn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_gravity="right" />
+
+</LinearLayout>

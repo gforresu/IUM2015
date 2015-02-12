@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+<string name="app_name">StudyMate</string>
+<string name="action_settings">Impostazioni</string>
+<string-array name="options_array">
+    <item>Mese</item>
+    <item>Settimana</item>
+    <item>Giorno</item>
+    <item>Impostazioni</item>
+
+</string-array>
+<string name="drawer_open">Open navigation drawer</string>
+<string name="drawer_close">Close navigation drawer</string>
+
+</resources>
