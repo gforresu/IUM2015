@@ -3,25 +3,27 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <com.disegnator.robotocalendar.RobotoCalendarView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/robotoCalendarPicker"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.84">
+        android:layout_weight="0.84"
+        android:orientation="vertical">
     </com.disegnator.robotocalendar.RobotoCalendarView>
 
-    <ImageButton style="@style/AppTheme"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:src="@drawable/butn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_gravity="right" />
+
+    <ImageButton
+        android:id="@+id/add_button"
+        android:layout_width="@dimen/round_button_diameter"
+        android:layout_height="@dimen/round_button_diameter"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/add_button_margin"
+        android:layout_marginEnd="@dimen/add_button_margin"
+        android:tint="@android:color/white"
+        android:src="@drawable/ic_action_new"
+        android:background="@drawable/circle"
+        android:visibility="invisible" />
+
 
 </LinearLayout>

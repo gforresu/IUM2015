@@ -25,7 +25,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 import com.disegnator.robotocalendar.RobotoCalendarView;
@@ -332,6 +331,9 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
     {
 
         this.robotoCalendarView.markDayAsSelectedDay(date);
+
+        View bottone = this.rootView.findViewById(R.id.add_button);
+        bottone.setVisibility(View.VISIBLE);
     }
 
     @Override
