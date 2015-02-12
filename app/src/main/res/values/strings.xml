@@ -7,7 +7,7 @@
 <string-array name="options_array">
     <item>Mese</item>
     <item>Settimana</item>
-    <item>Giorno</item>
+    <item>Oggi</item>
     <item>Impostazioni</item>
 
 </string-array>

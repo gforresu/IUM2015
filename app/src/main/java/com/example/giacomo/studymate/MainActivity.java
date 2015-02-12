@@ -1,8 +1,10 @@
 package com.example.giacomo.studymate;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,11 +47,15 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTitle = mDrawerTitle = getTitle();
+
 
         listaMenuLaterale = getResources().getStringArray(R.array.options_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        mTitle = listaMenuLaterale[0];
+
+        mDrawerTitle = getTitle();
 
 
         // Set the adapter for the list view
@@ -118,7 +124,7 @@ public class MainActivity extends FragmentActivity {
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(listaMenuLaterale[position]);
+        mTitle = listaMenuLaterale[position];
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
@@ -162,6 +168,11 @@ public class MainActivity extends FragmentActivity {
 
                 } break;
 
+                //Vista del giorno
+                case 2:
+                {
+
+                }break;
 
             }
 
@@ -233,14 +244,16 @@ public class MainActivity extends FragmentActivity {
 
         private WeekView mWeekView;
         private View rootView = null;
+        private View button;
 
         public InWeekView(LayoutInflater inflater, ViewGroup container)
         {
 
             rootView = inflater.inflate(R.layout.week_layout, container, false);
 
-            mWeekView = (WeekView) rootView.findViewById(R.id.weekView);
+            button = rootView.findViewById(R.id.add_button);
 
+            mWeekView = (WeekView) rootView.findViewById(R.id.weekView);
 
             mWeekView.setMonthChangeListener(new WeekView.MonthChangeListener() {
                 @Override
@@ -261,6 +274,19 @@ public class MainActivity extends FragmentActivity {
 
 
                     return events;
+                }
+            });
+
+            mWeekView.setEmptyViewClickListener(new WeekView.EmptyViewClickListener() {
+                @Override
+                public void onEmptyViewClicked(Calendar calendar) {
+
+                      mWeekView.goToDate(calendar);
+                    //mWeekView.setDayBackgroundColor();
+                    View button = findViewById(R.id.add_button);
+                    button.setVisibility(View.VISIBLE);
+
+
                 }
             });
 
@@ -301,6 +327,7 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
     private RobotoCalendarView robotoCalendarView;
     private Calendar currentCalendar;
     private int currentMonthIndex;
+    private View bottone ;
 
     public InMonthView(LayoutInflater inflater, ViewGroup container)
     {
@@ -311,7 +338,7 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
         currentMonthIndex = 0;
         currentCalendar = Calendar.getInstance(Locale.getDefault());
 
-
+        this.bottone = this.rootView.findViewById(R.id.add_button);
         robotoCalendarView.setRobotoCalendarListener( this );
         robotoCalendarView.initializeCalendar(currentCalendar);
         robotoCalendarView.markDayAsCurrentDay(currentCalendar.getTime());
@@ -332,14 +359,14 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
 
         this.robotoCalendarView.markDayAsSelectedDay(date);
 
-        View bottone = this.rootView.findViewById(R.id.add_button);
-        bottone.setVisibility(View.VISIBLE);
+        this.bottone.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onRightButtonClick()
     {
         this.currentMonthIndex++;
+        bottone.setVisibility(View.INVISIBLE);
         this.updateCalendar();
 
     }
@@ -348,6 +375,7 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
     public void onLeftButtonClick()
     {
         this.currentMonthIndex--;
+        bottone.setVisibility(View.INVISIBLE);
         this.updateCalendar();
     }
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<com.alamkanak.weekview.WeekView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:id="@+id/weekView"
+    android:layout_width="match_parent"
+    android:layout_height="441dp"
+    app:eventTextColor="@android:color/white"
+    app:textSize="12sp"
+    app:hourHeight="60dp"
+    app:firstDayOfWeek="monday"
+    app:headerColumnPadding="10dp"
+    app:headerColumnTextColor="#8f000000"
+    app:headerRowPadding="15dp"
+    app:columnGap="13dp"
+    app:dayNameLength="length_long"
+    app:noOfVisibleDays="1"
+    app:headerRowBackgroundColor="#ffefefef"
+    app:dayBackgroundColor="#05000000"
+    app:todayBackgroundColor="#1848adff"
+    app:headerColumnBackground="#ffffffff" />
+
+
+    <ImageButton
+    android:id="@+id/add_button"
+    android:layout_width="@dimen/round_button_diameter"
+    android:layout_height="@dimen/round_button_diameter"
+    android:layout_gravity="end|bottom"
+    android:layout_marginBottom="@dimen/add_button_margin"
+    android:layout_marginEnd="@dimen/add_button_margin"
+    android:tint="@android:color/white"
+    android:src="@drawable/ic_action_new"
+    android:background="@drawable/circle"
+    android:visibility="invisible" />
+
+
+</LinearLayout>
