@@ -32,8 +32,8 @@ import com.alamkanak.weekview.WeekViewEvent;
 import com.disegnator.robotocalendar.RobotoCalendarView;
 
 
-public class MainActivity extends FragmentActivity {
-
+public class MainActivity extends FragmentActivity
+{
     private DrawerLayout mDrawerLayout;
     private String[] listaMenuLaterale;
     private ListView mDrawerList;
@@ -48,7 +48,6 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.activity_main);
 
 
-
         listaMenuLaterale = getResources().getStringArray(R.array.options_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -56,7 +55,6 @@ public class MainActivity extends FragmentActivity {
         mTitle = listaMenuLaterale[0];
 
         mDrawerTitle = getTitle();
-
 
         // Set the adapter for the list view
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
@@ -86,14 +84,12 @@ public class MainActivity extends FragmentActivity {
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
         };
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
        // if (savedInstanceState == null) {
             selectItem(0);
         //}
-
-
-
 
     }
 
@@ -109,8 +105,9 @@ public class MainActivity extends FragmentActivity {
     /**
      * Swaps fragments in the main content view
      */
-    private void selectItem(int position) {
-        // Create a new fragment and specify the planet to show based on position
+    private void selectItem(int position)
+    {
+
         Fragment fragment = new ViewFragment();
         Bundle args = new Bundle();
         args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, position);
@@ -128,60 +125,6 @@ public class MainActivity extends FragmentActivity {
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
-
-    public class ViewFragment extends Fragment
-    {
-        public static final String TYPE_CALENDAR_VIEW = "type_view";
-        Activity currentActivity = null;
-
-        public ViewFragment()
-        {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState)
-        {
-
-
-            int i = getArguments().getInt(TYPE_CALENDAR_VIEW);
-
-            View rootView = null;
-
-            switch (i) {
-                case 1: {
-
-                    InWeekView week = new InWeekView(inflater, container);
-
-                    rootView = week.getView();
-
-                } break
-                ;
-
-                case 0:
-                {
-                    InMonthView month = new InMonthView(inflater, container);
-
-                    rootView = month.getView();
-
-
-                } break;
-
-                //Vista del giorno
-                case 2:
-                {
-
-                }break;
-
-            }
-
-            return rootView;
-        }
-
-
-
-    }
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,12 +148,14 @@ public class MainActivity extends FragmentActivity {
             // as you specify a parent activity in AndroidManifest.xml.
             int id = item.getItemId();
 
-            if (mDrawerToggle.onOptionsItemSelected(item)) {
+            if (mDrawerToggle.onOptionsItemSelected(item))
+            {
                 return true;
             }
 
             //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
+            if (id == R.id.action_settings)
+            {
                 return true;
             }
 
@@ -238,163 +183,6 @@ public class MainActivity extends FragmentActivity {
 
 
     /////////////////
-
-    public class InWeekView
-    {
-
-        private WeekView mWeekView;
-        private View rootView = null;
-        private View button;
-
-        public InWeekView(LayoutInflater inflater, ViewGroup container)
-        {
-
-            rootView = inflater.inflate(R.layout.week_layout, container, false);
-
-            button = rootView.findViewById(R.id.add_button);
-
-            mWeekView = (WeekView) rootView.findViewById(R.id.weekView);
-
-            mWeekView.setMonthChangeListener(new WeekView.MonthChangeListener() {
-                @Override
-                public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-                    List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-
-                    /*Calendar startTime = Calendar.getInstance();
-                    startTime.set(Calendar.HOUR_OF_DAY, 3);
-                    startTime.set(Calendar.MINUTE, 0);
-                    startTime.set(Calendar.MONTH, newMonth - 1);
-                    startTime.set(Calendar.YEAR, newYear);
-                    Calendar endTime = (Calendar) startTime.clone();
-                    endTime.add(Calendar.HOUR, 1);
-                    endTime.set(Calendar.MONTH, newMonth - 1);
-                    WeekViewEvent event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-                    //event.setColor(1);
-                    events.add(event);*/
-
-
-                    return events;
-                }
-            });
-
-            mWeekView.setEmptyViewClickListener(new WeekView.EmptyViewClickListener() {
-                @Override
-                public void onEmptyViewClicked(Calendar calendar) {
-
-                      mWeekView.goToDate(calendar);
-                    //mWeekView.setDayBackgroundColor();
-                    View button = findViewById(R.id.add_button);
-                    button.setVisibility(View.VISIBLE);
-
-
-                }
-            });
-
-        }
-
-            //setContentView(R.layout.week_layout);
-            //rootView.findViewById(R.id.weekView);
-
-        public View getView()
-        {
-            return this.rootView;
-        }
-
-
-        private String getEventTitle(Calendar time) {
-            return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH) + 1, time.get(Calendar.DAY_OF_MONTH));
-        }
-
-
-        public void onEventClick(WeekViewEvent event, RectF eventRect) {
-            Toast.makeText(MainActivity.this, "Clicked " + event.getName(), Toast.LENGTH_SHORT).show();
-        }
-
-
-        public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-            Toast.makeText(MainActivity.this, "Long pressed event: " + event.getName(), Toast.LENGTH_SHORT).show();
-        }
-
-
-
-    }
-
-
-
-public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
-{
-    private View rootView = null;
-    private RobotoCalendarView robotoCalendarView;
-    private Calendar currentCalendar;
-    private int currentMonthIndex;
-    private View bottone ;
-
-    public InMonthView(LayoutInflater inflater, ViewGroup container)
-    {
-        rootView = inflater.inflate(R.layout.month_layout, container, false);
-
-        robotoCalendarView = (RobotoCalendarView) rootView.findViewById(R.id.robotoCalendarPicker);
-
-        currentMonthIndex = 0;
-        currentCalendar = Calendar.getInstance(Locale.getDefault());
-
-        this.bottone = this.rootView.findViewById(R.id.add_button);
-        robotoCalendarView.setRobotoCalendarListener( this );
-        robotoCalendarView.initializeCalendar(currentCalendar);
-        robotoCalendarView.markDayAsCurrentDay(currentCalendar.getTime());
-
-
-    }
-
-
-    public View getView()
-    {
-        return this.rootView;
-    }
-
-
-    @Override
-    public void onDateSelected(Date date)
-    {
-
-        this.robotoCalendarView.markDayAsSelectedDay(date);
-
-        this.bottone.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void onRightButtonClick()
-    {
-        this.currentMonthIndex++;
-        bottone.setVisibility(View.INVISIBLE);
-        this.updateCalendar();
-
-    }
-
-    @Override
-    public void onLeftButtonClick()
-    {
-        this.currentMonthIndex--;
-        bottone.setVisibility(View.INVISIBLE);
-        this.updateCalendar();
-    }
-
-
-    private void updateCalendar()
-    {
-        currentCalendar = Calendar.getInstance(Locale.getDefault());
-        currentCalendar.add(Calendar.MONTH, currentMonthIndex);
-        robotoCalendarView.initializeCalendar(currentCalendar);
-    }
-
-
-
-
-
-}
-
-
-
 
 
 
