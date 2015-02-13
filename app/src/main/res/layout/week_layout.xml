@@ -26,13 +26,13 @@ android:layout_height="match_parent">-->
         android:layout_width="match_parent"
         android:layout_height="360dp"
         app:eventTextColor="@android:color/white"
-        app:textSize="12sp"
+        app:textSize="10sp"
         app:hourHeight="60dp"
         app:firstDayOfWeek="monday"
-        app:headerColumnPadding="10dp"
+        app:headerColumnPadding="12dp"
         app:headerColumnTextColor="#8f000000"
-        app:headerRowPadding="15dp"
-        app:columnGap="13dp"
+        app:headerRowPadding="16dp"
+        app:columnGap="15dp"
         app:dayNameLength="length_long"
         app:noOfVisibleDays="5"
         app:headerRowBackgroundColor="#ffefefef"
@@ -53,6 +53,7 @@ android:layout_height="match_parent">-->
         android:src="@drawable/ic_action_new"
         android:background="@drawable/circle"
         android:visibility="invisible"
+        android:contentDescription="@string/info_add_button"
         android:layout_marginTop="7dp" />
 
 

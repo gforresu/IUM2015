@@ -1,5 +1,7 @@
 package com.example.giacomo.studymate;
 
+import android.app.FragmentManager;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +12,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
+public class InMonthView extends FragmentActivity implements RobotoCalendarView.RobotoCalendarListener
 {
     private View rootView = null;
+    private View eventView = null;
     private RobotoCalendarView robotoCalendarView;
     private Calendar currentCalendar;
     private int currentMonthIndex;
@@ -21,6 +24,7 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
     public InMonthView(LayoutInflater inflater, ViewGroup container)
     {
         rootView = inflater.inflate(R.layout.month_layout, container, false);
+        eventView = inflater.inflate(R.layout.new_event, container, false);
 
         robotoCalendarView = (RobotoCalendarView) rootView.findViewById(R.id.robotoCalendarPicker);
 
@@ -28,6 +32,22 @@ public class InMonthView implements RobotoCalendarView.RobotoCalendarListener
         currentCalendar = Calendar.getInstance(Locale.getDefault());
 
         this.bottone = this.rootView.findViewById(R.id.add_button);
+
+        bottone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                //setContentView(R.layout.new_event);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, new CreateEventView())
+                        .commit();
+
+            }                                                       //Al click del bottone imposto come vista corrente quella
+                                                                      //dell'inserimento dell'evento
+        });
+
         robotoCalendarView.setRobotoCalendarListener( this );
         robotoCalendarView.initializeCalendar(currentCalendar);
         robotoCalendarView.markDayAsCurrentDay(currentCalendar.getTime());

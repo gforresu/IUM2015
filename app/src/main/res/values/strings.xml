@@ -11,7 +11,30 @@
     <item>Impostazioni</item>
 
 </string-array>
+
+    <string-array name="tipoEvento">
+        <item>Esame</item>
+        <item>Altro</item>
+    </string-array>
+
+
 <string name="drawer_open">Open navigation drawer</string>
 <string name="drawer_close">Close navigation drawer</string>
+<string name="info_add_button">Bottone aggiunta evento</string>
+
+<string name="form_intro">Aggiunta evento</string>
+<string name="name">Inserisci un nome per l\'evento</string>
+<string name="date">Data:</string>
+<string name="date_start">inizio:</string>
+<string name="date_end">fine:</string>
+<string name="form_end_button_label">Fine</string>
+<string name="form_back_button_label">Annulla</string>
+<string name="label_form_name">Nome Inserito:</string>
+<string name="label_form_date">Data Inserita:</string>
+<string name="event_type">Inserisci tipo evento:</string>
+<string name="add_date_title">Aggiunta evento</string>
+
+
+    <string name="hintTitleEvent">Inserisci un nome per l\'evento</string>
 
 </resources>

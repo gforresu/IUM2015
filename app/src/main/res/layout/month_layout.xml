@@ -23,6 +23,7 @@
         android:tint="@android:color/white"
         android:src="@drawable/ic_action_new"
         android:background="@drawable/circle"
+        android:contentDescription="@string/info_add_button"
         android:visibility="invisible" />
 
 

@@ -17,7 +17,19 @@ public class Event
                         WeekViewEvent() il primo parametro è l'ID dell'evento */
     private int complexity; //grado di complessiyà
 
-    public Event(String eventName, Date startDate, Date endDate, String eventType, int eventId, int complexity)
+    /**
+     * Costruttore per evento esame
+     *
+     * @param eventName nome dell'esame
+     * @param startDate inizio evento
+     * @param endDate data fine
+     * @param eventType tipologia evento
+     * @param eventId id
+     * @param complexity complessità dell'esame
+     * @param cfu Crediti
+     *
+     * */
+    public Event(String eventName, Date startDate, Date endDate, String eventType, int eventId, int complexity, int cfu)
     {
         this.eventName = eventName;
         this.startDate = startDate;
@@ -25,7 +37,18 @@ public class Event
         this.eventType = eventType;
         this.eventId = eventId;
         this.complexity = complexity;
+        this.cfu = cfu;
     }
+
+    public Event(String eventName, Date startDate, Date endDate, String eventType, int eventId)
+    {
+        this.eventName = eventName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.eventType = eventType;
+        this.eventId = eventId;
+    }
+
 
     public String getEventName()
     {

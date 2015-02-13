@@ -105,7 +105,7 @@ public class MainActivity extends FragmentActivity
     /**
      * Swaps fragments in the main content view
      */
-    private void selectItem(int position)
+    public void selectItem(int position)
     {
 
         Fragment fragment = new ViewFragment();
