@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/monthLayout">
 
     <com.disegnator.robotocalendar.RobotoCalendarView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/robotoCalendarPicker"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="350dp"
         android:layout_weight="0.84"
         android:orientation="vertical">
     </com.disegnator.robotocalendar.RobotoCalendarView>
@@ -18,13 +19,14 @@
         android:layout_width="@dimen/round_button_diameter"
         android:layout_height="@dimen/round_button_diameter"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="@dimen/add_button_margin"
-        android:layout_marginEnd="@dimen/add_button_margin"
+        android:layout_marginEnd="29dp"
         android:tint="@android:color/white"
         android:src="@drawable/ic_action_new"
         android:background="@drawable/circle"
         android:contentDescription="@string/info_add_button"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:layout_below="@+id/robotoCalendarPicker"
+        android:layout_alignParentEnd="true" />
 
 
-</LinearLayout>
+</RelativeLayout>

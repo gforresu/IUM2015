@@ -34,6 +34,7 @@ import com.disegnator.robotocalendar.RobotoCalendarView;
 
 public class MainActivity extends FragmentActivity
 {
+    public View aaaa = null;
     private DrawerLayout mDrawerLayout;
     private String[] listaMenuLaterale;
     private ListView mDrawerList;

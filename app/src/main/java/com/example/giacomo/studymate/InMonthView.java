@@ -1,6 +1,5 @@
 package com.example.giacomo.studymate;
 
-import android.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import java.util.Locale;
 public class InMonthView extends FragmentActivity implements RobotoCalendarView.RobotoCalendarListener
 {
     private View rootView = null;
-    private View eventView = null;
     private RobotoCalendarView robotoCalendarView;
     private Calendar currentCalendar;
     private int currentMonthIndex;
@@ -23,30 +21,14 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
 
     public InMonthView(LayoutInflater inflater, ViewGroup container)
     {
-        rootView = inflater.inflate(R.layout.month_layout, container, false);
-        eventView = inflater.inflate(R.layout.new_event, container, false);
 
+        rootView = inflater.inflate(R.layout.month_layout, container, false);
         robotoCalendarView = (RobotoCalendarView) rootView.findViewById(R.id.robotoCalendarPicker);
 
         currentMonthIndex = 0;
         currentCalendar = Calendar.getInstance(Locale.getDefault());
 
         this.bottone = this.rootView.findViewById(R.id.add_button);
-
-        bottone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                //setContentView(R.layout.new_event);
-
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_frame, new CreateEventView())
-                        .commit();
-
-            }                                                       //Al click del bottone imposto come vista corrente quella
-                                                                      //dell'inserimento dell'evento
-        });
 
         robotoCalendarView.setRobotoCalendarListener( this );
         robotoCalendarView.initializeCalendar(currentCalendar);
@@ -59,6 +41,8 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
     {
         return this.rootView;
     }
+
+    public View getBottone(){ return this.bottone; }
 
 
     @Override
@@ -86,7 +70,6 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
         bottone.setVisibility(View.INVISIBLE);
         this.updateCalendar();
     }
-
 
     private void updateCalendar()
     {

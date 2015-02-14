@@ -2,10 +2,17 @@ package com.example.giacomo.studymate;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.disegnator.robotocalendar.RobotoCalendarView;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by giacomo on 13/02/2015.
@@ -15,6 +22,7 @@ import android.view.ViewGroup;
 public class ViewFragment extends Fragment
 {
     public static final String TYPE_CALENDAR_VIEW = "type_view";
+    private View bottone ;
 
     public ViewFragment()
     {
@@ -45,6 +53,19 @@ public class ViewFragment extends Fragment
                 InMonthView month = new InMonthView(inflater, container);
 
                 rootView = month.getView();
+
+                bottone = month.getBottone();
+
+                bottone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.content_frame, new CreateEventView())
+                                .commit();
+
+                    }});
 
 
             } break;
