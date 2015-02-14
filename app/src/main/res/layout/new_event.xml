@@ -1,81 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="1"
-    android:id="@+id/newEventLayout">
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/form_intro"
-        android:id="@+id/newText"
-        android:textSize="25sp" />
-
+        android:text="@string/name"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/edit_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hintTitleEvent"
-        android:layout_marginTop="55dp"
-        android:layout_alignParentStart="false" />
+        android:text=""
+        android:focusableInTouchMode="true"
+        android:focusable="true" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/date"
-        android:textSize="25sp"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/edit_name"
-        android:layout_alignParentStart="false" />
+        android:textStyle="bold"
+        android:layout_marginTop="15dip"
+        />
 
     <TextView
-        android:layout_width="79dp"
+        android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:text="@string/date_start"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="5dp"
-        android:layout_toStartOf="@+id/dateStart" />
+        android:layout_marginTop="25dip"
+        />
 
     <EditText
         android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:inputType="date"
-        android:ems="10"
-        android:id="@+id/dateStart"
         android:hint="gg/mm/aaaa"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_marginTop="-35dip"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="0dp"
-        android:layout_below="@+id/textView4"
-        android:layout_toStartOf="@+id/form_button" />
+        android:layout_marginLeft="-20dp" />
 
     <EditText
-        android:layout_width="94dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:inputType="time"
         android:ems="10"
         android:id="@+id/hourStart"
         android:layout_gravity="right"
-        android:hint="ora"
-        android:layout_below="@+id/textView4"
-        android:layout_alignEnd="@+id/form_button" />
+        android:hint="hh:mm"
+     android:layout_below="@+id/textView4"
+       android:layout_alignEnd="@+id/form_button"
+        android:layout_marginTop="-40dp" />
 
     <TextView
-        android:layout_width="181dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:text="@string/date_end"
-        android:id="@+id/labelDateEnd"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:layout_toStartOf="@+id/dateEnd"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginTop="30dip"
+        />
+
+    <EditText
+             android:layout_width="90dp"
+             android:layout_height="wrap_content"
+             android:inputType="time"
+             android:ems="10"
+             android:id="@+id/hourEnd"
+             android:layout_gravity="right"
+             android:hint="hh:mm"
+             android:layout_below="@+id/hourStart"
+             android:layout_alignStart="@+id/hourStart"
+             android:layout_marginTop="-35dp" />
 
 
 
@@ -83,72 +87,82 @@
         android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:inputType="date"
-        android:ems="10"
-        android:id="@+id/dateEnd"
         android:hint="gg/mm/aaaa"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="0dp"
-        android:layout_alignTop="@+id/hourEnd"
-        android:layout_alignStart="@+id/dateStart"
-        android:layout_marginTop="5dp" />
-
-    <EditText
-        android:layout_width="94dp"
-        android:layout_height="wrap_content"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/hourEnd"
-        android:layout_gravity="right"
-        android:hint="ora"
-        android:layout_below="@+id/hourStart"
-        android:layout_alignStart="@+id/hourStart"
-        android:layout_marginTop="5dp" />
-
-
-    <EditText
-        android:layout_width="138dp"
-        android:layout_height="wrap_content"
-        android:inputType="date"
         android:ems="10"
         android:id="@+id/editText2"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-35dip"/>
+        android:layout_marginTop="-35dip"
+        android:layout_marginLeft="-20dp" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_type"
-        android:id="@+id/textView3"
-        android:textSize="25dp"
-        android:layout_centerVertical="true"
-        android:layout_alignEnd="@+id/hourEnd" />
+        android:layout_marginTop="15dip"
+        android:textStyle="bold"
+        />
 
     <Spinner
-        android:layout_width="match_parent"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
+        android:spinnerMode="dropdown"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:entries="@array/tipoEvento"/>
 
-        android:entries="@array/tipoEvento"
-        android:layout_below="@+id/textView3"
-        android:spinnerStyle="@android:style/Widget.Spinner.DropDown"
-        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:text="@string/event_priority"
+        android:textStyle="bold"
+        android:layout_marginTop="10dip"
+        android:visibility="invisible" />
+
+    <SeekBar
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exam_weight"
+        android:textStyle="bold"
+        android:layout_marginTop="15dip"
+        android:visibility="invisible" />
+
+    <EditText
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/form_button"
         android:layout_height="wrap_content"
         android:text="@string/form_end_button_label"
+        android:layout_marginTop="12dip"
         android:layout_gravity="right"
-        android:layout_width="130dip"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:textColor="@color/confirm_circle"
+        android:layout_width="130dip" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/form_button2"
         android:layout_height="wrap_content"
         android:text="@string/form_back_button_label"
-        android:id="@+id/annulla"
-        android:layout_alignTop="@+id/form_button"
-        android:layout_alignParentStart="true" />
+        android:textColor="@color/alert_circle"
+        android:layout_gravity="left"
+        android:layout_width="130dip"
+        android:layout_marginTop="-50dip"
+        />
 
+</LinearLayout>
 
-</RelativeLayout>
+    </ScrollView>
