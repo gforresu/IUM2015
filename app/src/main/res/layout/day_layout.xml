@@ -37,9 +37,10 @@
         android:tint="@android:color/white"
         android:src="@drawable/ic_action_new"
         android:background="@drawable/circle"
-        android:layout_alignBottom="@+id/dayView"
+        android:contentDescription="@string/info_add_button"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginLeft="10dp" />
-
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="23dp" />
 
 </RelativeLayout>
