@@ -11,6 +11,7 @@ import com.alamkanak.weekview.WeekViewEvent;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 public class InWeekView
@@ -40,6 +41,9 @@ public class InWeekView
                  *
                  * */
 
+
+
+
                     Calendar startTime = Calendar.getInstance();
                     startTime.set(Calendar.DAY_OF_MONTH, 15);
                     startTime.set(Calendar.HOUR_OF_DAY, 7);
@@ -52,36 +56,43 @@ public class InWeekView
                     WeekViewEvent event = new WeekViewEvent(1, "Piscina", startTime, endTime);
 
                     event.setColor(Color.GRAY);
+
+                 if(! events.contains(event))
                     events.add(event);
 
 
-                startTime = Calendar.getInstance();
-                startTime.set(Calendar.DAY_OF_MONTH, 15);
-                startTime.set(Calendar.HOUR_OF_DAY, 9);
-                startTime.set(Calendar.MINUTE, 0);
-                startTime.set(Calendar.MONTH, newMonth - 1);
-                startTime.set(Calendar.YEAR, newYear);
-                endTime = (Calendar) startTime.clone();
-                endTime.add(Calendar.HOUR, 2);
-                //endTime.set(Calendar.MONTH, newMonth - 1);
-                event = new WeekViewEvent(2, "IUM", startTime, endTime);
-                event.setColor(Color.GREEN);
+                    startTime = Calendar.getInstance();
+                    startTime.set(Calendar.DAY_OF_MONTH, 15);
+                    startTime.set(Calendar.HOUR_OF_DAY, 9);
+                    startTime.set(Calendar.MINUTE, 0);
+                    startTime.set(Calendar.MONTH, newMonth - 1);
+                    startTime.set(Calendar.YEAR, newYear);
+                    endTime = (Calendar) startTime.clone();
+                    endTime.add(Calendar.HOUR, 2);
+                    //endTime.set(Calendar.MONTH, newMonth - 1);
+                    event = new WeekViewEvent(2, "IUM", startTime, endTime);
+                    event.setColor(Color.GREEN);
+                if(! events.contains(event))
                 events.add(event);
 
 
-                //Calendar startTime1 = Calendar.getInstance();
-                startTime = Calendar.getInstance();
-                startTime.set(Calendar.DAY_OF_MONTH, 15);
-                startTime.set(Calendar.HOUR_OF_DAY, 15);
-                startTime.set(Calendar.MINUTE, 0);
-                startTime.set(Calendar.MONTH, newMonth - 1);
-                startTime.set(Calendar.YEAR, newYear);
-                endTime = (Calendar) startTime.clone();
-                endTime.add(Calendar.HOUR, 2);
-                //endTime.set(Calendar.MONTH, newMonth - 1);
-                event = new WeekViewEvent(3, "IUM", startTime, endTime);
-                event.setColor(Color.GREEN);
+                    //Calendar startTime1 = Calendar.getInstance();
+                    startTime = Calendar.getInstance();
+                    startTime.set(Calendar.DAY_OF_MONTH, 15);
+                    startTime.set(Calendar.HOUR_OF_DAY, 15);
+                    startTime.set(Calendar.MINUTE, 0);
+                    startTime.set(Calendar.MONTH, newMonth - 1);
+                    startTime.set(Calendar.YEAR, newYear);
+                    endTime = (Calendar) startTime.clone();
+                    endTime.add(Calendar.HOUR, 2);
+                    //endTime.set(Calendar.MONTH, newMonth - 1);
+                    event = new WeekViewEvent(3, "IUM", startTime, endTime);
+                    event.setColor(Color.GREEN);
+
+                if(! events.contains(event))
                 events.add(event);
+
+
 
                 return events;
             }
@@ -105,14 +116,17 @@ public class InWeekView
 
                 WeekViewEvent event = new WeekViewEvent(0, "", startTime, endTime);
 
-                for( WeekViewEvent e : events  )
-                {
-                    int id = (int) e.getId();
+                Iterator<WeekViewEvent> iter = events.iterator();
 
-                    if( id == 0 )
-                        events.remove( e );
+                while(iter.hasNext())
+                {
+                    WeekViewEvent e = iter.next();
+
+                   if( e.getId() == 0)
+                       iter.remove();
 
                 }
+
 
                 event.setColor(Color.green(1));
 
@@ -124,6 +138,14 @@ public class InWeekView
                 View button = rootView.findViewById(R.id.add_button);
                 button.setVisibility(View.VISIBLE);
 
+
+            }
+        });
+
+
+        mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
+            @Override
+            public void onEventClick(WeekViewEvent weekViewEvent, RectF rectF) {
 
             }
         });
