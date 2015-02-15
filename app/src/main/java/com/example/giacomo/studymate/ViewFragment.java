@@ -8,10 +8,13 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import com.disegnator.robotocalendar.RobotoCalendarView;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -48,10 +51,8 @@ public class ViewFragment extends Fragment
 
             } break;
 
-            case 0:
-            {
-                InMonthView month = new InMonthView(inflater, container);
-
+            case 0: {
+                final InMonthView month = new InMonthView(inflater, container);
                 rootView = month.getView();
 
                 bottone = month.getBottone();
@@ -60,19 +61,35 @@ public class ViewFragment extends Fragment
                     @Override
                     public void onClick(View view) {
 
+
+                        CreateEventView event = new CreateEventView();
+
+
+                        Bundle args = new Bundle();
+                        args.putString(event.EVENT_DATE, month.getSelection());
+                        event.setArguments(args);
+
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, new CreateEventView())
+                                .replace(R.id.content_frame, event)
                                 .commit();
 
-                    }});
 
 
-            } break;
+                    }
+
+                });
+
+            }break;
 
             //Vista del giorno
             case 2:
             {
+
+                   InDayView day = new InDayView(inflater, container);
+
+                    rootView = day.getView();
+
 
             }break;
 

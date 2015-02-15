@@ -9,7 +9,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
 
-    android:id="@+id/weekView"
+    android:id="@+id/dayView"
     android:layout_width="match_parent"
     android:layout_height="441dp"
     app:eventTextColor="@android:color/white"
@@ -37,7 +37,7 @@
     android:src="@drawable/ic_action_new"
     android:background="@drawable/circle"
     android:visibility="invisible"
-        android:layout_alignBottom="@+id/weekView"
+        android:layout_alignBottom="@+id/dayView"
         android:layout_alignParentEnd="true"
         android:layout_marginLeft="10dp" />
 

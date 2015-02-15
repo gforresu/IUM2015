@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.disegnator.robotocalendar.RobotoCalendarView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -17,7 +18,9 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
     private RobotoCalendarView robotoCalendarView;
     private Calendar currentCalendar;
     private int currentMonthIndex;
+    private String selection;
     private View bottone ;
+    private View hint;
 
     public InMonthView(LayoutInflater inflater, ViewGroup container)
     {
@@ -29,6 +32,7 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
         currentCalendar = Calendar.getInstance(Locale.getDefault());
 
         this.bottone = this.rootView.findViewById(R.id.add_button);
+        this.hint = this.rootView.findViewById(R.id.hintMonth);
 
         robotoCalendarView.setRobotoCalendarListener( this );
         robotoCalendarView.initializeCalendar(currentCalendar);
@@ -50,9 +54,16 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
     {
 
         this.robotoCalendarView.markDayAsSelectedDay(date);
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        String sel = format.format(date);
 
+        this.selection= new String(sel);
+
+        this.hint.setVisibility(View.GONE);
         this.bottone.setVisibility(View.VISIBLE);
     }
+
+    public String getSelection(){ return this.selection; }
 
     @Override
     public void onRightButtonClick()

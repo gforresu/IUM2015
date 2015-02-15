@@ -13,8 +13,9 @@
 </string-array>
 
     <string-array name="tipoEvento">
-        <item>Esame</item>
         <item>Altro</item>
+        <item>Esame</item>
+
     </string-array>
 
 
@@ -36,5 +37,9 @@
 <string name="add_date_title">Aggiunta evento</string>
 <string name="exam_weight">Inserisci i crediti dell\'esame:</string>
 <string name="hintTitleEvent">Inserisci un nome per l\'evento:</string>
+<string name="hintDate">gg-mm-aaaa</string>
+<string name="hintHour">hh:mm</string>
+<string name="hintCfu">Crediti</string>
+<string name="hintMonthView">Seleziona una data dal calendario</string>
 
 </resources>

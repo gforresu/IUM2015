@@ -27,9 +27,7 @@ public class InWeekView
 
         rootView = inflater.inflate(R.layout.week_layout, container, false);
 
-       // button = rootView.findViewById(R.id.add_button);
-
-        mWeekView = (WeekView) rootView.findViewById(R.id.weekView);
+        mWeekView = (WeekView) rootView.findViewById(R.id.dayView);
 
         mWeekView.setMonthChangeListener(new WeekView.MonthChangeListener() {
             @Override
