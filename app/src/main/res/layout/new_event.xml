@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:inputType="time"
         android:ems="10"
-        android:id="@+id/hourStart"
+        android:id="@+id/startTime"
         android:layout_gravity="right"
         android:hint="@string/hintHour"
      android:layout_below="@+id/textView4"
@@ -82,11 +82,11 @@
              android:layout_height="wrap_content"
              android:inputType="time"
              android:ems="10"
-             android:id="@+id/hourEnd"
+             android:id="@+id/endTime"
              android:layout_gravity="right"
              android:hint="@string/hintHour"
-             android:layout_below="@+id/hourStart"
-             android:layout_alignStart="@+id/hourStart"
+             android:layout_below="@+id/startTime"
+             android:layout_alignStart="@+id/startTime"
              android:layout_marginTop="-37dp" />
 
 
