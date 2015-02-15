@@ -1,5 +1,6 @@
 package com.example.giacomo.studymate;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.disegnator.robotocalendar.RobotoCalendarView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class InMonthView extends FragmentActivity implements RobotoCalendarView.RobotoCalendarListener
@@ -37,6 +39,21 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
         robotoCalendarView.setRobotoCalendarListener( this );
         robotoCalendarView.initializeCalendar(currentCalendar);
         robotoCalendarView.markDayAsCurrentDay(currentCalendar.getTime());
+
+/*
+Inserire qui sotto le date da evidenziare
+
+il primo campo di markDayWithStyle può essere
+RobotoCalendarView.RED_CIRCLE
+RobotoCalendarView.GREEN_CIRCLE
+RobotoCalendarView.BLUE_CIRCLE
+
+ */
+
+        GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
+
+        robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
 
     }
 
