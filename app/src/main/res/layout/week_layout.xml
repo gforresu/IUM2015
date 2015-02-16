@@ -24,11 +24,12 @@ android:layout_height="match_parent">-->
         app:hourHeight="40dp"
         app:firstDayOfWeek="monday"
         app:headerColumnPadding="12dp"
-        app:headerColumnTextColor="#8f000000"
+        app:headerColumnTextColor="#39499c"
         app:headerRowPadding="16dp"
         app:columnGap="15dp"
         app:dayNameLength="length_long"
         app:noOfVisibleDays="5"
+        app:todayHeaderTextColor="#39499c"
         app:headerRowBackgroundColor="#ffefefef"
         app:dayBackgroundColor="#05000000"
         app:todayBackgroundColor="#1848adff"
@@ -45,8 +46,7 @@ android:layout_height="match_parent">-->
         android:contentDescription="@string/info_add_button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="23dp" />
+        android:layout_marginEnd="31dp" />
 
 </RelativeLayout>
     <!--
