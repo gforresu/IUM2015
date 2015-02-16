@@ -18,10 +18,12 @@ public class InWeekView
 {
 
     private WeekView mWeekView;
+    private Calendar calendar;
     private View rootView = null;
     //private View button;
 
-    List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+    List<WeekViewEvent> eventsTmp = new ArrayList<WeekViewEvent>();
+    private Boolean i = false;
 
     public InWeekView(LayoutInflater inflater, ViewGroup container)
     {
@@ -41,9 +43,50 @@ public class InWeekView
                  *
                  * */
 
+                List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
 
+                //Inserimento della selezione
+                if(i == true)
+                {
+                    Calendar endTime = (Calendar) calendar.clone();
+                    Calendar startTime = (Calendar) calendar.clone();
 
+                    startTime.set(Calendar.HOUR, 0);
+                    startTime.set(Calendar.MINUTE, 0);
+
+
+                    endTime.set(Calendar.HOUR, 23);
+                    endTime.set(Calendar.MINUTE, 59);
+
+                    WeekViewEvent event = new WeekViewEvent(1, "", startTime, endTime);
+
+                    Iterator<WeekViewEvent> iter = events.iterator();
+
+                    while (iter.hasNext())
+                    {
+                        WeekViewEvent e = iter.next();
+
+                        if (e.getId() == 1)
+                            iter.remove();
+
+                    }
+
+
+                    event.setColor(Color.green(1));
+
+                    events.add(event);
+
+                    mWeekView.notifyDatasetChanged();
+
+
+                    View button = rootView.findViewById(R.id.add_button);
+                    button.setVisibility(View.VISIBLE);
+
+                }
+
+
+                ///Inserimento eventi statici
                     Calendar startTime = Calendar.getInstance();
                     startTime.set(Calendar.DAY_OF_MONTH, 15);
                     startTime.set(Calendar.HOUR_OF_DAY, 7);
@@ -53,11 +96,11 @@ public class InWeekView
                     Calendar endTime = (Calendar) startTime.clone();
                     endTime.add(Calendar.HOUR, 2); //lasso di tempo dell'evento
                     //endTime.set(Calendar.MONTH, newMonth - 1);
-                    WeekViewEvent event = new WeekViewEvent(1, "Piscina", startTime, endTime);
+                    WeekViewEvent event = new WeekViewEvent(2, "Piscina", startTime, endTime);
 
                     event.setColor(Color.GRAY);
 
-                 if(! events.contains(event))
+
                     events.add(event);
 
 
@@ -70,10 +113,9 @@ public class InWeekView
                     endTime = (Calendar) startTime.clone();
                     endTime.add(Calendar.HOUR, 2);
                     //endTime.set(Calendar.MONTH, newMonth - 1);
-                    event = new WeekViewEvent(2, "IUM", startTime, endTime);
+                    event = new WeekViewEvent(3, "IUM", startTime, endTime);
                     event.setColor(Color.GREEN);
-                if(! events.contains(event))
-                events.add(event);
+                    events.add(event);
 
 
                     //Calendar startTime1 = Calendar.getInstance();
@@ -86,13 +128,11 @@ public class InWeekView
                     endTime = (Calendar) startTime.clone();
                     endTime.add(Calendar.HOUR, 2);
                     //endTime.set(Calendar.MONTH, newMonth - 1);
-                    event = new WeekViewEvent(3, "IUM", startTime, endTime);
+                    event = new WeekViewEvent(4, "IUM", startTime, endTime);
                     event.setColor(Color.GREEN);
 
-                if(! events.contains(event))
-                events.add(event);
 
-
+                    events.add(event);
 
                 return events;
             }
@@ -101,43 +141,12 @@ public class InWeekView
         mWeekView.setEmptyViewClickListener(new WeekView.EmptyViewClickListener()
         {
             @Override
-            public void onEmptyViewClicked(Calendar calendar)
+            public void onEmptyViewClicked(Calendar cal)
             {
+                i = true;
 
-                Calendar endTime = (Calendar) calendar.clone();
-                Calendar startTime = (Calendar) calendar.clone();
-
-                startTime.set(Calendar.HOUR, 0);
-                startTime.set(Calendar.MINUTE, 0);
-
-
-                endTime.set(Calendar.HOUR, 23);
-                endTime.set(Calendar.MINUTE, 59);
-
-                WeekViewEvent event = new WeekViewEvent(0, "", startTime, endTime);
-
-                Iterator<WeekViewEvent> iter = events.iterator();
-
-                while(iter.hasNext())
-                {
-                    WeekViewEvent e = iter.next();
-
-                   if( e.getId() == 0)
-                       iter.remove();
-
-                }
-
-
-                event.setColor(Color.green(1));
-
-                events.add(event);
-
+               calendar = (Calendar) cal.clone();
                 mWeekView.notifyDatasetChanged();
-
-
-                View button = rootView.findViewById(R.id.add_button);
-                button.setVisibility(View.VISIBLE);
-
 
             }
         });
