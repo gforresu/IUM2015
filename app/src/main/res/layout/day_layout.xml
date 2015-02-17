@@ -18,7 +18,7 @@
         app:hourHeight="60dp"
         app:firstDayOfWeek="monday"
         app:headerColumnPadding="10dp"
-        app:headerColumnTextColor="#8f000000"
+        app:headerColumnTextColor="#39499c"
         app:headerRowPadding="15dp"
         app:columnGap="13dp"
         app:dayNameLength="length_long"
@@ -39,9 +39,6 @@
         android:background="@drawable/circle"
         android:contentDescription="@string/info_add_button"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="23dp"
-        android:visibility="invisible" />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
