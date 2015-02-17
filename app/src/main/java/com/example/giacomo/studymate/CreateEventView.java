@@ -1,5 +1,6 @@
 package com.example.giacomo.studymate;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.SimpleTimeZone;
+import java.util.zip.Inflater;
 
 /**
  * Crea la vista ed i listener per la creazione dell'evento
@@ -39,6 +41,9 @@ public class CreateEventView extends Fragment
     private EditText startDate;
     private EditText startTime;
     private EditText endTime;
+    private LayoutInflater inf;
+    private ViewGroup vg;
+    private View view;
 
     public CreateEventView()
     {
@@ -46,9 +51,14 @@ public class CreateEventView extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState)
     {
+
+
+        this.inf = inflater;
+        this.vg = container;
+
 
         //Cambio titolo all'actionbar
         getActivity().getActionBar().setTitle("Nuovo evento");
@@ -258,21 +268,44 @@ public class CreateEventView extends Fragment
             }
         });
 
+
         final Button ok = (Button) v.findViewById(R.id.form_button);
+
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+
+                ViewFragment k = new ViewFragment();
+                Bundle args = new Bundle();
+                args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, 0);
+                args.putBoolean(ViewFragment.AUTO_COMPLETE, true);
+
+                k.setArguments(args);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, k)
+                        .commit();
+
 
             }
         });
 
 
 
+
+
+
+        this.view = v;
+
         return  v;
     }
 
 
+
+    public View getView(){return this.view;}
 
 
 

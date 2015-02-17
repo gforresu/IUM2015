@@ -23,9 +23,12 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
     private String selection;
     private View bottone ;
     private View hint;
+    private Boolean auto;
 
-    public InMonthView(LayoutInflater inflater, ViewGroup container)
+    public InMonthView(LayoutInflater inflater, ViewGroup container, Boolean auto)
     {
+
+       this.auto =auto;
 
         rootView = inflater.inflate(R.layout.month_layout, container, false);
         robotoCalendarView = (RobotoCalendarView) rootView.findViewById(R.id.robotoCalendarPicker);
@@ -49,10 +52,15 @@ RobotoCalendarView.GREEN_CIRCLE
 RobotoCalendarView.BLUE_CIRCLE
 
  */
+        if(auto)
+        {
+            GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
 
-        GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
 
-        robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+        }
+
+
 
 
     }
@@ -101,6 +109,17 @@ RobotoCalendarView.BLUE_CIRCLE
 
     private void updateCalendar()
     {
+        if(this.auto)
+        {
+            GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+        }
+
+        //////////////////////////////////////////////////////
+
+
+
         currentCalendar = Calendar.getInstance(Locale.getDefault());
         currentCalendar.add(Calendar.MONTH, currentMonthIndex);
         robotoCalendarView.initializeCalendar(currentCalendar);

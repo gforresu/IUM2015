@@ -112,6 +112,7 @@ public class MainActivity extends FragmentActivity
         Fragment fragment = new ViewFragment();
         Bundle args = new Bundle();
         args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, position);
+        args.putBoolean(ViewFragment.AUTO_COMPLETE, false);
         fragment.setArguments(args);
 
         // Insert the fragment by replacing any existing fragment

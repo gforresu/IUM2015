@@ -25,6 +25,8 @@ import java.util.Locale;
 public class ViewFragment extends Fragment
 {
     public static final String TYPE_CALENDAR_VIEW = "type_view";
+    public static final String AUTO_COMPLETE = "magheggio";
+
     private View bottone ;
 
     public ViewFragment()
@@ -45,14 +47,18 @@ public class ViewFragment extends Fragment
         {
             case 1:
             {
-                InWeekView week = new InWeekView(inflater, container);
+                InWeekView week = new InWeekView(inflater, container, getArguments().getBoolean(AUTO_COMPLETE));
 
                 rootView = week.getView();
 
             } break;
 
             case 0: {
-                final InMonthView month = new InMonthView(inflater, container);
+
+
+
+                final InMonthView month = new InMonthView(inflater, container, getArguments().getBoolean(AUTO_COMPLETE));
+
                 rootView = month.getView();
 
                 bottone = month.getBottone();
@@ -60,7 +66,6 @@ public class ViewFragment extends Fragment
                 bottone.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
 
                         CreateEventView event = new CreateEventView();
 
@@ -74,8 +79,6 @@ public class ViewFragment extends Fragment
                                 .replace(R.id.content_frame, event)
                                 .commit();
 
-
-
                     }
 
                 });
@@ -88,7 +91,7 @@ public class ViewFragment extends Fragment
 
                    InDayView day = new InDayView(inflater, container);
 
-                    rootView = day.getView();
+                   rootView = day.getView();
 
 
             }break;

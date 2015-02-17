@@ -169,7 +169,8 @@
             android:textColor="#ffffff"
             android:background="#39499c"
             android:layout_width="130dip"
-            android:enabled="false" />
+            android:enabled="true"
+            android:clickable="true" />
 
         <Button
             android:id="@+id/form_button2"

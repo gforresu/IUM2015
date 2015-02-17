@@ -30,7 +30,7 @@ public class InDayView
             @Override
             public List<WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 
-                return events;
+        return events;
             }
         });
     }

@@ -20,12 +20,12 @@ public class InWeekView
     private WeekView mWeekView;
     private Calendar calendar;
     private View rootView = null;
-    //private View button;
 
     List<WeekViewEvent> eventsTmp = new ArrayList<WeekViewEvent>();
-    private Boolean i = false;
+    private Boolean isSelected = false;
 
-    public InWeekView(LayoutInflater inflater, ViewGroup container)
+
+    public InWeekView(LayoutInflater inflater, ViewGroup container, Boolean auto)
     {
 
         rootView = inflater.inflate(R.layout.week_layout, container, false);
@@ -47,7 +47,7 @@ public class InWeekView
 
 
                 //Inserimento della selezione
-                if(i == true)
+                if(isSelected )
                 {
                     Calendar endTime = (Calendar) calendar.clone();
                     Calendar startTime = (Calendar) calendar.clone();
@@ -86,7 +86,7 @@ public class InWeekView
                 }
 
 
-                ///Inserimento eventi statici
+                    ///Inserimento eventi statici
                     Calendar startTime = Calendar.getInstance();
                     startTime.set(Calendar.DAY_OF_MONTH, 15);
                     startTime.set(Calendar.HOUR_OF_DAY, 7);
@@ -134,6 +134,7 @@ public class InWeekView
 
                     events.add(event);
 
+
                 return events;
             }
         });
@@ -143,7 +144,7 @@ public class InWeekView
             @Override
             public void onEmptyViewClicked(Calendar cal)
             {
-                i = true;
+                isSelected = true;
 
                calendar = (Calendar) cal.clone();
                 mWeekView.notifyDatasetChanged();
