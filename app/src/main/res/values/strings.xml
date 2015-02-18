@@ -31,6 +31,7 @@
 <string name="date_end">fine:</string>
 <string name="form_end_button_label">Fine</string>
 <string name="form_back_button_label">Annulla</string>
+    <string name="textNewEventButton">Nuovo Evento</string>
 <string name="label_form_name">Nome Inserito:</string>
 <string name="label_form_date">Data Inserita:</string>
 <string name="event_type">Inserisci tipo evento:</string>

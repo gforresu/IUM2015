@@ -33,7 +33,7 @@ import java.util.zip.Inflater;
 /**
  * Crea la vista ed i listener per la creazione dell'evento
  */
-public class CreateEventView extends Fragment
+public class CreateEventView
 {
     public static final String EVENT_DATE = "event_date";
 
@@ -50,9 +50,9 @@ public class CreateEventView extends Fragment
 
     }
 
-    @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
-                             Bundle savedInstanceState)
+
+    public CreateEventView(final LayoutInflater inflater, final ViewGroup container,
+                             Activity activity, final FragmentManager manager, String data)
     {
 
 
@@ -61,7 +61,7 @@ public class CreateEventView extends Fragment
 
 
         //Cambio titolo all'actionbar
-        getActivity().getActionBar().setTitle("Nuovo evento");
+        activity.getActionBar().setTitle("Nuovo evento");
 
         //Imposto il listener dal datepicker
         DatePickerDialog.OnDateSetListener dateEndPickerListener = new DatePickerDialog.OnDateSetListener()
@@ -138,7 +138,7 @@ public class CreateEventView extends Fragment
 
 
         //Recupero la data
-        String data = getArguments().getString(EVENT_DATE);
+        //String data = activity.getString(EVENT_DATE);
 
         final View v = inflater.inflate(R.layout.new_event, container, false);
 
@@ -159,7 +159,7 @@ public class CreateEventView extends Fragment
 
 
         //Definizione dei picker della data
-        final DatePickerDialog endDateDialog = new DatePickerDialog(getActivity(), dateEndPickerListener ,
+        final DatePickerDialog endDateDialog = new DatePickerDialog(activity, dateEndPickerListener ,
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
 
 
@@ -173,7 +173,7 @@ public class CreateEventView extends Fragment
         });
 
 
-        final DatePickerDialog startDateDialog = new DatePickerDialog(getActivity(), dateStartPickerListener ,
+        final DatePickerDialog startDateDialog = new DatePickerDialog(activity, dateStartPickerListener ,
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
 
 
@@ -197,8 +197,8 @@ public class CreateEventView extends Fragment
 
         //Impostazione dei picker dell'ora
 
-        final TimePickerDialog dialogStartTime = new TimePickerDialog(getActivity(), timeStartPickerListener, 9, 0, true );
-        final TimePickerDialog dialogEndTime = new TimePickerDialog(getActivity(), timeEndPickerListener, 9, 0, true );
+        final TimePickerDialog dialogStartTime = new TimePickerDialog(activity, timeStartPickerListener, 9, 0, true );
+        final TimePickerDialog dialogEndTime = new TimePickerDialog(activity, timeEndPickerListener, 9, 0, true );
 
         final EditText tmpStartTime = (EditText) v.findViewById(R.id.startTime);
         this.startTime = tmpStartTime;
@@ -271,6 +271,9 @@ public class CreateEventView extends Fragment
 
         final Button ok = (Button) v.findViewById(R.id.form_button);
 
+        final Button newEvent = (Button) v.findViewById(R.id.newEvent);
+
+
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,7 +287,28 @@ public class CreateEventView extends Fragment
 
                 k.setArguments(args);
 
-                FragmentManager fragmentManager = getFragmentManager();
+                FragmentManager fragmentManager = manager;
+                fragmentManager.beginTransaction()
+                        .replace(R.id.content_frame, k)
+                        .commit();
+
+
+            }
+        });
+
+        newEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+
+                ViewFragment k = new ViewFragment();
+                Bundle args = new Bundle();
+                args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, 4);
+                args.putString(ViewFragment.DATA, new String());
+
+                k.setArguments(args);
+
+                FragmentManager fragmentManager = manager;
                 fragmentManager.beginTransaction()
                         .replace(R.id.content_frame, k)
                         .commit();
@@ -298,9 +322,13 @@ public class CreateEventView extends Fragment
 
 
 
+
+
+
+
+
         this.view = v;
 
-        return  v;
     }
 
 

@@ -26,6 +26,8 @@ public class ViewFragment extends Fragment
 {
     public static final String TYPE_CALENDAR_VIEW = "type_view";
     public static final String AUTO_COMPLETE = "magheggio";
+    public static final String DATA = "selected_calendar_date";
+
 
     private View bottone ;
 
@@ -67,16 +69,18 @@ public class ViewFragment extends Fragment
                     @Override
                     public void onClick(View view) {
 
-                        CreateEventView event = new CreateEventView();
+                        //CreateEventView event = new CreateEventView();
+                        ViewFragment viewFragment = new ViewFragment();
 
 
                         Bundle args = new Bundle();
-                        args.putString(event.EVENT_DATE, month.getSelection());
-                        event.setArguments(args);
+                        args.putString(viewFragment.DATA, month.getSelection());
+                        args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, 4);
+                        viewFragment.setArguments(args);
 
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction()
-                                .replace(R.id.content_frame, event)
+                                .replace(R.id.content_frame, viewFragment)
                                 .commit();
 
                     }
@@ -101,6 +105,15 @@ public class ViewFragment extends Fragment
             {
 
             }break;
+
+            //Vista dell'evento
+            case 4:
+            {
+                CreateEventView event = new CreateEventView(inflater,container,getActivity(),getFragmentManager(),
+                        getArguments().getString(DATA));
+
+                rootView = event.getView();
+            }
 
         }
 
