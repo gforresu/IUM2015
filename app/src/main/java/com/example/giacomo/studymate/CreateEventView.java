@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,17 +37,44 @@ import java.util.zip.Inflater;
 public class CreateEventView
 {
     public static final String EVENT_DATE = "event_date";
-
+    private EditText eventName;
     private EditText endDate;
     private EditText startDate;
     private EditText startTime;
     private EditText endTime;
-    private LayoutInflater inf;
-    private ViewGroup vg;
+    private EditText cfu;
+    private DatePickerDialog tmpEndDateDialog;
+    private String minDate;
     private View view;
+    private int counter =1;
 
     public CreateEventView()
     {
+
+    }
+
+    private void resetFields()
+    {
+
+        if(endTime != null)
+            this.endTime.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
+        if(startDate != null)
+            this.startDate.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
+        if(cfu != null)
+            this.cfu.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
+        if(endDate != null)
+            this.endDate.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
+        if(startTime != null)
+            this.startTime.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
+
+        if(eventName != null)
+            this.eventName.setBackgroundResource(R.drawable.ok_textfield_default_holo_light);
+
 
     }
 
@@ -55,9 +83,6 @@ public class CreateEventView
                              Activity activity, final FragmentManager manager, String data)
     {
 
-
-        this.inf = inflater;
-        this.vg = container;
 
 
         //Cambio titolo all'actionbar
@@ -77,7 +102,13 @@ public class CreateEventView
 
                 String sel = format.format(d.getTime());
 
+                endDate.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+
+                addCounter();
+
                 endDate.setText(sel);
+
+                activateButton();
             }
     };
         DatePickerDialog.OnDateSetListener dateStartPickerListener = new DatePickerDialog.OnDateSetListener()
@@ -93,7 +124,24 @@ public class CreateEventView
 
                 String sel = format.format(d.getTime());
 
+                startDate.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+
+                addCounter();
+
+
+       /*         Date tmpD= null;
+                GregorianCalendar tmpCal = new GregorianCalendar();
+
+                Date t = format.parse()*/
+
+                if(tmpEndDateDialog != null)
+                tmpEndDateDialog.getDatePicker().setMinDate(d.getTimeInMillis() + 1000);
+
+
+
                 startDate.setText(sel);
+
+                activateButton();
             }
         };
         ////////////////////////////////////////////////////
@@ -112,7 +160,13 @@ public class CreateEventView
                 else
                     ora = new String(hours+":"+ minutes);
 
+                startTime.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+
+                addCounter();
+
                 startTime.setText(ora);
+
+                activateButton();
 
             }
         };
@@ -130,7 +184,14 @@ public class CreateEventView
                 else
                     ora = new String(hours+":"+ minutes);
 
+
+                endTime.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+
+                addCounter();
+
                 endTime.setText(ora);
+
+                activateButton();
 
             }
         };
@@ -142,11 +203,12 @@ public class CreateEventView
 
         final View v = inflater.inflate(R.layout.new_event, container, false);
 
-
         //Imposto la data selezionata nel campo della data inizio dell'evento
         final EditText tmpStartDate = (EditText) v.findViewById(R.id.startDate);
+
         //EditText endDate = (EditText) v.findViewById(R.id.endDate);
         this.startDate = tmpStartDate;
+        startDate.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
         startDate.setText(data);
 
 
@@ -158,17 +220,41 @@ public class CreateEventView
         Calendar cal = Calendar.getInstance();
 
 
+        //Imposto limite al picker
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date tmpD= null;
+        GregorianCalendar tmpCal = new GregorianCalendar();
+
+
+        try
+        {
+           if(!data.isEmpty())
+           {
+               tmpD = format.parse(data);
+               tmpCal.setTime(tmpD);
+           }
+        }catch(ParseException ex){System.out.print("Errore durante la conversione: "+ex.getMessage());}
+
+
         //Definizione dei picker della data
         final DatePickerDialog endDateDialog = new DatePickerDialog(activity, dateEndPickerListener ,
-                cal.get(Calendar.YEAR), cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH));
+                tmpCal.get(Calendar.YEAR), tmpCal.get(Calendar.MONTH),tmpCal.get(Calendar.DAY_OF_MONTH));
+
+        //Copio un riferimento
+        this.tmpEndDateDialog = endDateDialog;
+
+       if(tmpD != null)
+        endDateDialog.getDatePicker().setMinDate(tmpCal.getTimeInMillis() + 1000);
+
 
 
         endDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
 
-                if(tmpEndDate.isFocused())
+                if (tmpEndDate.isFocused())
                     endDateDialog.show();
+
             }
         });
 
@@ -185,14 +271,6 @@ public class CreateEventView
                     startDateDialog.show();
             }
         });
-
-
-
-        // int hourOfDay, int minute, boolean is24HourView
-
-       /* Calendar start = Calendar.getInstance();
-        start.set(Calendar.HOUR_OF_DAY, 9);
-        start.set(Calendar.MINUTE, 00);*/
 
 
         //Impostazione dei picker dell'ora
@@ -243,8 +321,11 @@ public class CreateEventView
                 {
                     v.findViewById(R.id.textExamWeight).setVisibility(View.VISIBLE);
                     v.findViewById(R.id.examWeight).setVisibility(View.VISIBLE);
+
                 }
 
+
+                activateButton();
 
             }
 
@@ -255,16 +336,62 @@ public class CreateEventView
         });
 
 
-        final EditText text = (EditText) v.findViewById(R.id.edit_name);
+        eventName = (EditText) v.findViewById(R.id.edit_name);
 
 
-        text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        eventName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
 
 
-                if(!text.isFocused() && text.getText().length() != 0)
-                    text.setBackgroundColor(Color.GREEN);
+                if(!b && eventName.getText().length() != 0)
+                {
+                    eventName.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+                    addCounter();
+                    activateButton();
+                }
+
+
+                else if(!b && eventName.getText().length() == 0)
+                {
+                    eventName.setBackgroundResource(R.drawable.err_textfield_activated_holo_light);
+                    counter--;
+                    eventName.setHint("Devi compilare questo campo");
+                    eventName.setHintTextColor(Color.RED);
+                    activateButton();
+                }
+
+            }
+        });
+
+
+        this.cfu = (EditText) v.findViewById(R.id.examWeight);
+
+        cfu.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b)
+            {
+
+                if(!b && cfu.getText().length() != 0)
+                {
+                    cfu.setBackgroundResource(R.drawable.ok_textfield_activated_holo_light);
+                    addCounter();
+                    activateButton();
+
+                }
+
+                else if(!b && cfu.getText().length() == 0)
+                {
+                    cfu.setBackgroundResource(R.drawable.err_textfield_activated_holo_light);
+                    counter--;
+
+                    cfu.setHint("Compila");
+                    cfu.setHintTextColor(Color.RED);
+                    activateButton();
+
+                }
+
+
             }
         });
 
@@ -301,6 +428,7 @@ public class CreateEventView
             public void onClick(View view)
             {
 
+
                 ViewFragment k = new ViewFragment();
                 Bundle args = new Bundle();
                 args.putInt(ViewFragment.TYPE_CALENDAR_VIEW, 4);
@@ -313,21 +441,20 @@ public class CreateEventView
                         .replace(R.id.content_frame, k)
                         .commit();
 
-
             }
         });
 
 
 
 
-
-
-
-
-
-
-
         this.view = v;
+
+
+
+        if(data.length() == 0)
+            resetFields();
+
+
 
     }
 
@@ -335,6 +462,42 @@ public class CreateEventView
 
     public View getView(){return this.view;}
 
+
+    private void activateButton()
+    {
+
+        Button fine = (Button) this.view.findViewById(R.id.form_button);
+        Button newEvent = (Button) this.view.findViewById(R.id.newEvent);
+        View exam = this.view.findViewById(R.id.examWeight);
+
+        int limit = 5;
+
+        if(exam.isShown())
+            limit = 6;
+
+        if(this.counter >= limit)
+        {
+
+            fine.setBackgroundColor(Color.parseColor("#39499c"));
+            newEvent.setBackgroundColor(Color.parseColor("#39499c"));
+        }
+
+
+        else
+        {
+            fine.setBackgroundColor(Color.parseColor("#a7b0df"));
+            newEvent.setBackgroundColor(Color.parseColor("#a7b0df"));
+        }
+
+
+
+    }
+
+    private void addCounter()
+    {
+        if(counter <6)
+            counter++;
+    }
 
 
 

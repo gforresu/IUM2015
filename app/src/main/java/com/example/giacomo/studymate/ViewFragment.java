@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
@@ -61,6 +62,13 @@ public class ViewFragment extends Fragment
 
                 final InMonthView month = new InMonthView(inflater, container, getArguments().getBoolean(AUTO_COMPLETE));
 
+
+                getActivity().getActionBar().setTitle("Mese");
+
+               /* getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
+                );
+*/
                 rootView = month.getView();
 
                 bottone = month.getBottone();

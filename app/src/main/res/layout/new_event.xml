@@ -162,12 +162,14 @@
 
         <Button
             android:layout_width="118dp"
-            android:layout_height="57dp"
+            android:layout_height="49dp"
             android:text="@string/textNewEventButton"
             android:id="@+id/newEvent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="-65dp"
-            android:clickable="true" />
+            android:layout_marginBottom="-62dp"
+            android:clickable="true"
+            android:background="#a7b0df"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/form_button"
@@ -176,7 +178,7 @@
             android:layout_marginTop="12dip"
             android:layout_gravity="right"
             android:textColor="#ffffff"
-            android:background="#39499c"
+            android:background="#a7b0df"
             android:layout_width="96dp"
             android:enabled="true"
             android:clickable="true" />
@@ -186,7 +188,7 @@
             android:layout_height="wrap_content"
             android:text="@string/form_back_button_label"
             android:textColor="#ffffff"
-            android:background="#a7b0df"
+            android:background="#39499c"
             android:layout_gravity="left"
             android:layout_width="94dp"
             android:layout_marginTop="-48dip"

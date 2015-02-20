@@ -88,7 +88,7 @@ public class InWeekView
 
                     ///Inserimento eventi statici
                     Calendar startTime = Calendar.getInstance();
-                    startTime.set(Calendar.DAY_OF_MONTH, 15);
+                    startTime.set(Calendar.DAY_OF_MONTH, 21);
                     startTime.set(Calendar.HOUR_OF_DAY, 7);
                     startTime.set(Calendar.MINUTE, 0);
                     startTime.set(Calendar.MONTH, newMonth - 1);
@@ -105,7 +105,7 @@ public class InWeekView
 
 
                     startTime = Calendar.getInstance();
-                    startTime.set(Calendar.DAY_OF_MONTH, 15);
+                    startTime.set(Calendar.DAY_OF_MONTH, 21);
                     startTime.set(Calendar.HOUR_OF_DAY, 9);
                     startTime.set(Calendar.MINUTE, 0);
                     startTime.set(Calendar.MONTH, newMonth - 1);
@@ -120,7 +120,7 @@ public class InWeekView
 
                     //Calendar startTime1 = Calendar.getInstance();
                     startTime = Calendar.getInstance();
-                    startTime.set(Calendar.DAY_OF_MONTH, 15);
+                    startTime.set(Calendar.DAY_OF_MONTH, 21);
                     startTime.set(Calendar.HOUR_OF_DAY, 15);
                     startTime.set(Calendar.MINUTE, 0);
                     startTime.set(Calendar.MONTH, newMonth - 1);
@@ -133,6 +133,134 @@ public class InWeekView
 
 
                     events.add(event);
+
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 23);
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 2);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(5, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 23);
+                startTime.set(Calendar.HOUR_OF_DAY, 15);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(5, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 24);
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(6, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 24);
+                startTime.set(Calendar.HOUR_OF_DAY, 15);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(7, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 25);
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(7, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 25);
+                startTime.set(Calendar.HOUR_OF_DAY, 15);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(7, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 26);
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(8, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 26);
+                startTime.set(Calendar.HOUR_OF_DAY, 15);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 3);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(9, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
+
+
+                startTime = Calendar.getInstance();
+                startTime.set(Calendar.DAY_OF_MONTH, 27);
+                startTime.set(Calendar.HOUR_OF_DAY, 9);
+                startTime.set(Calendar.MINUTE, 0);
+                startTime.set(Calendar.MONTH, newMonth - 1);
+                startTime.set(Calendar.YEAR, newYear);
+                endTime = (Calendar) startTime.clone();
+                endTime.add(Calendar.HOUR, 1);
+                //endTime.set(Calendar.MONTH, newMonth - 1);
+                event = new WeekViewEvent(10, "IUM", startTime, endTime);
+                event.setColor(Color.GREEN);
+                events.add(event);
 
 
                 return events;

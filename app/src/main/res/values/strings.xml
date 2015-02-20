@@ -42,5 +42,7 @@
 <string name="hintHour">hh:mm</string>
 <string name="hintCfu">Crediti</string>
 <string name="hintMonthView">Seleziona una data dal calendario</string>
+<string name="labelButtonViewScheduling">Nascondi gli eventi suggeriti</string>
+
 
 </resources>

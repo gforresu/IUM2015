@@ -1,5 +1,6 @@
 package com.example.giacomo.studymate;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -23,10 +24,12 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
     private String selection;
     private View bottone ;
     private View hint;
+    private View buttonScheduling;
     private Boolean auto;
 
     public InMonthView(LayoutInflater inflater, ViewGroup container, Boolean auto)
     {
+
 
        this.auto =auto;
 
@@ -37,6 +40,7 @@ public class InMonthView extends FragmentActivity implements RobotoCalendarView.
         currentCalendar = Calendar.getInstance(Locale.getDefault());
 
         this.bottone = this.rootView.findViewById(R.id.add_button);
+        this.buttonScheduling = this.rootView.findViewById(R.id.viewScheduling);
         this.hint = this.rootView.findViewById(R.id.hintMonth);
 
         robotoCalendarView.setRobotoCalendarListener( this );
@@ -54,7 +58,31 @@ RobotoCalendarView.BLUE_CIRCLE
  */
         if(auto)
         {
-            GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
+            GregorianCalendar d =new GregorianCalendar(2015, 2, 21);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 22);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 23);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 24);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 25);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 26);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 27);
 
             robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
 
@@ -83,6 +111,7 @@ RobotoCalendarView.BLUE_CIRCLE
         String sel = format.format(date);
 
         this.selection= new String(sel);
+        this.buttonScheduling.setVisibility(View.VISIBLE);
 
         this.hint.setVisibility(View.GONE);
         this.bottone.setVisibility(View.VISIBLE);
@@ -111,9 +140,36 @@ RobotoCalendarView.BLUE_CIRCLE
     {
         if(this.auto)
         {
-            GregorianCalendar d =new GregorianCalendar(2015, 2, 15);
+            GregorianCalendar d =new GregorianCalendar(2015, 2, 21);
 
             robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 22);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 23);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 24);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 25);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 26);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+            d =new GregorianCalendar(2015, 2, 27);
+
+            robotoCalendarView.markDayWithStyle(RobotoCalendarView.RED_CIRCLE, d.getTime() );
+
+
+
         }
 
         //////////////////////////////////////////////////////
